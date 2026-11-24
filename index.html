@@ -1,65 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>My Notes App</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Notes App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
 </head>
-
 <body>
+  <main class="container">
+    <header>
+      <h1>My Notes 📝</h1>
+      <p>Write your thoughts and save your ideas.</p>
+      <div class="header-actions">
+        <span id="userEmail" class="user-email" hidden></span>
+        <button id="signOutBtn" class="secondary-btn" hidden>Sign out</button>
+        <button id="themeToggle" class="secondary-btn">🌙 Dark Mode</button>
+      </div>
+    </header>
 
-    <div class="container">
+    <section id="authSection" class="panel auth-panel">
+      <h2>Sign in to your notes</h2>
+      <p class="helper-text">Use the same account on every device to access your notes.</p>
+      <form id="authForm">
+        <label for="authEmail">Email</label>
+        <input type="email" id="authEmail" placeholder="Enter your email" autocomplete="email" required>
+        <label for="authPassword">Password</label>
+        <input type="password" id="authPassword" placeholder="At least 6 characters" autocomplete="current-password" minlength="6" required>
+        <div class="auth-buttons">
+          <button type="submit" id="signInBtn">Sign in</button>
+          <button type="button" id="signUpBtn" class="secondary-btn">Create account</button>
+        </div>
+      </form>
+      <p id="authMessage" class="status-message" role="status"></p>
+    </section>
 
-        <!-- Header -->
-        <header>
-            <h1>My Notes 📝</h1>
-            <p>Write your thoughts and save your ideas.</p>
+    <div id="notesApp" hidden>
+      <section class="panel notes-input">
+        <h2 id="formHeading">Create a New Note</h2>
+        <input type="text" id="noteTitle" placeholder="Enter note title" maxlength="150">
+        <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+        <div class="note-form-actions">
+          <button id="addNoteBtn">Add Note</button>
+          <button id="cancelEditBtn" class="secondary-btn" hidden>Cancel edit</button>
+        </div>
+        <p class="helper-text">Your changes are saved to your account when you add or update a note.</p>
+      </section>
 
-            <button id="themeToggle">🌙 Dark Mode</button>
-        </header>
-
-        <!-- Add Notes -->
-        <section class="notes-input">
-
-            <h2>Create a New Note</h2>
-
-            <input
-                type="text"
-                id="noteTitle"
-                placeholder="Enter note title"
-            >
-
-            <textarea
-                id="noteContent"
-                placeholder="Write your note here..."
-            ></textarea>
-
-            <button id="addNoteBtn">Add Note</button>
-
-        </section>
-
-        <!-- Saved Notes -->
-        <section class="saved-notes">
-
-            <h2>My Saved Notes</h2>
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="🔍 Search your notes..."
-            >
-
-            <div id="notesList"></div>
-
-        </section>
-
+      <section class="saved-notes">
+        <h2>My Saved Notes</h2>
+        <input type="search" id="searchInput" placeholder="🔍 Search your notes...">
+        <p id="notesStatus" class="status-message" role="status"></p>
+        <div id="notesList"></div>
+      </section>
     </div>
-
-    <script src="script.js"></script>
-
+  </main>
 </body>
 </html>
