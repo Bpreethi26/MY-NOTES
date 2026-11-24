@@ -3,57 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Notes App</title>
+  <meta name="theme-color" content="#f7f7fc">
+  <title>My Notes — Your personal space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js" defer></script>
 </head>
 <body>
   <main class="container">
-    <header>
-      <h1>My Notes 📝</h1>
-      <p>Write your thoughts and save your ideas.</p>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="My Notes home">
+        <span class="brand-mark">✦</span>
+        <span>my<span class="brand-accent">notes</span></span>
+      </a>
       <div class="header-actions">
         <span id="userEmail" class="user-email" hidden></span>
-        <button id="signOutBtn" class="secondary-btn" hidden>Sign out</button>
-        <button id="themeToggle" class="secondary-btn">🌙 Dark Mode</button>
+        <button id="signOutBtn" class="secondary-btn" hidden>Sign out <span aria-hidden="true">↗</span></button>
+        <button id="themeToggle" class="theme-btn secondary-btn" aria-label="Toggle dark mode">☾</button>
       </div>
     </header>
 
-    <section id="authSection" class="panel auth-panel">
-      <h2>Sign in to your notes</h2>
-      <p class="helper-text">Use the same account on every device to access your notes.</p>
-      <form id="authForm">
-        <label for="authEmail">Email</label>
-        <input type="email" id="authEmail" placeholder="Enter your email" autocomplete="email" required>
-        <label for="authPassword">Password</label>
-        <input type="password" id="authPassword" placeholder="At least 6 characters" autocomplete="current-password" minlength="6" required>
-        <div class="auth-buttons">
-          <button type="submit" id="signInBtn">Sign in</button>
-          <button type="button" id="signUpBtn" class="secondary-btn">Create account</button>
-        </div>
-      </form>
-      <p id="authMessage" class="status-message" role="status"></p>
+    <section id="authSection" class="auth-layout">
+      <div class="auth-intro">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> YOUR SPACE, YOUR THOUGHTS</span>
+        <h1>Make room for<br><span>good ideas.</span></h1>
+        <p>A calm little space to collect thoughts, plan your days, and keep the things that matter close.</p>
+        <div class="feature-pills"><span>✦ Simple</span><span>↻ Synced</span><span>♡ Personal</span></div>
+        <div class="auth-art" aria-hidden="true"><span class="art-note note-one">✎<br><small>ideas</small></span><span class="art-note note-two">✧<br><small>create</small></span><span class="art-orbit"></span></div>
+      </div>
+      <section class="panel auth-panel">
+        <div class="auth-icon">✦</div>
+        <h2>Welcome back</h2>
+        <p class="helper-text">Sign in to pick up where you left off.</p>
+        <form id="authForm">
+          <label for="authEmail">Email address</label>
+          <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" required>
+          <label for="authPassword">Password</label>
+          <input type="password" id="authPassword" placeholder="Enter your password" autocomplete="current-password" minlength="6" required>
+          <div class="auth-buttons">
+            <button type="submit" id="signInBtn">Sign in <span>→</span></button>
+            <button type="button" id="signUpBtn" class="secondary-btn">Create account</button>
+          </div>
+        </form>
+        <p id="authMessage" class="status-message" role="status"></p>
+        <p class="secure-note">⌁ Your notes are private to your account.</p>
+      </section>
     </section>
 
     <div id="notesApp" hidden>
-      <section class="panel notes-input">
-        <h2 id="formHeading">Create a New Note</h2>
-        <input type="text" id="noteTitle" placeholder="Enter note title" maxlength="150">
-        <textarea id="noteContent" placeholder="Write your note here..."></textarea>
-        <div class="note-form-actions">
-          <button id="addNoteBtn">Add Note</button>
-          <button id="cancelEditBtn" class="secondary-btn" hidden>Cancel edit</button>
+      <section class="welcome-row">
+        <div>
+          <span class="eyebrow"><span class="eyebrow-dot"></span> YOUR PERSONAL WORKSPACE</span>
+          <h1>Capture the moment<span>.</span></h1>
+          <p>Every thought deserves a place to land.</p>
         </div>
-        <p class="helper-text">Your changes are saved to your account when you add or update a note.</p>
+        <div class="welcome-illustration" aria-hidden="true"><span>✦</span><span>✎</span><span>○</span></div>
       </section>
 
-      <section class="saved-notes">
-        <h2>My Saved Notes</h2>
-        <input type="search" id="searchInput" placeholder="🔍 Search your notes...">
-        <p id="notesStatus" class="status-message" role="status"></p>
-        <div id="notesList"></div>
+      <section class="workspace">
+        <section class="panel notes-input">
+          <div class="section-heading">
+            <div><span class="mini-label">WRITE SOMETHING</span><h2 id="formHeading">Create a new note</h2></div>
+            <span class="heading-icon">✎</span>
+          </div>
+          <input type="text" id="noteTitle" placeholder="Give your note a title..." maxlength="150" aria-label="Note title">
+          <textarea id="noteContent" placeholder="Start writing your thoughts here..." aria-label="Note content"></textarea>
+          <div class="note-form-actions">
+            <button id="addNoteBtn">Save note <span>↗</span></button>
+            <button id="cancelEditBtn" class="secondary-btn" hidden>Cancel</button>
+          </div>
+          <p class="helper-text">✧ Your notes are saved securely to your account.</p>
+        </section>
+
+        <section class="saved-notes">
+          <div class="saved-heading">
+            <div><span class="mini-label">YOUR COLLECTION</span><h2>All notes</h2></div>
+            <span class="collection-mark">✧</span>
+          </div>
+          <div class="search-wrap"><span>⌕</span><input type="search" id="searchInput" placeholder="Search your notes..." aria-label="Search notes"></div>
+          <p id="notesStatus" class="status-message" role="status"></p>
+          <div id="notesList"></div>
+        </section>
       </section>
+      <footer class="footer-note">Made for your thoughts <span>♥</span></footer>
     </div>
   </main>
 </body>
