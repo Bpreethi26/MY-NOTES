@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Notes App</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>My Notes 📝</h1>
+            <p>Write your thoughts and save your ideas.</p>
+
+            <button id="themeToggle">🌙 Dark Mode</button>
+        </header>
+
+        <!-- Add Notes -->
+        <section class="notes-input">
+
+            <h2>Create a New Note</h2>
+
+            <input
+                type="text"
+                id="noteTitle"
+                placeholder="Enter note title"
+            >
+
+            <textarea
+                id="noteContent"
+                placeholder="Write your note here..."
+            ></textarea>
+
+            <button id="addNoteBtn">Add Note</button>
+
+        </section>
+
+        <!-- Saved Notes -->
+        <section class="saved-notes">
+
+            <h2>My Saved Notes</h2>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search your notes..."
+            >
+
+            <div id="notesList"></div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
